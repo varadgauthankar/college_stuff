@@ -28,6 +28,7 @@ public class Startup {
 		case 3:
 			s = new Sqaure(200);
 			break;
+			
 		}
 		
 		if(choice > 0 & choice < 4)
