@@ -1,26 +1,9 @@
 #include <stdio.h>
-// #include <conio.h>
-// #include <process.h>
 #include <string.h>
 #include <math.h>
 
 #define IN 99
 #define N 8
-
-// char *strrev(char *str)
-// {
-//     char *p1, *p2;
-
-//     if (!str || !*str)
-//         return str;
-//     for (p1 = str, p2 = str + strlen(str) - 1; p2 > p1; ++p1, --p2)
-//     {
-//         *p1 ^= *p2;
-//         *p2 ^= *p1;
-//         *p1 ^= *p2;
-//     }
-//     return str;
-// }
 
 int dijkstra(int cost[][N], int source, int target)
 {
@@ -70,6 +53,7 @@ int dijkstra(int cost[][N], int source, int target)
 
     path[j] = '\0';
     // strrev(path);
+    //TODO: reverse the path
     printf("%s", path);
     return (dist[target]);
 }
