@@ -1,0 +1,7 @@
+Problem statemnet 1
+
+Write a java program to 
+	1.arithmatic operation such as addition, multiplication sub & division. 
+	
+	2. create class shape with attributes and sub classes of shapes
+		 
