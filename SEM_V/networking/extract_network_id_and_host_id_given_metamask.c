@@ -12,7 +12,7 @@ void main()
 
     printf("ip adress is %d.%d.%d.%d\n", i, p, q, r);
 
-    if (p <= 255 && 1 <= 255 && r <= 255)
+    if (p <= 255 && q <= 255 && r <= 255)
     {
         if (i <= 127)
         {
