@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="2d_shapes_abstract/src"/>
+	<classpathentry kind="src" path="2d_shapes_interface/src"/>
+	<classpathentry kind="src" path="2d_shapes/src"/>
+	<classpathentry kind="src" path="3d_shapes/src"/>
+	<classpathentry kind="src" path="employee/src"/>
+	<classpathentry kind="src" path="rectangle/src"/>
+	<classpathentry kind="src" path="string-math/src"/>
+	<classpathentry kind="src" path="teacher/src"/>
+	<classpathentry kind="output" path="2d_shapes/bin"/>
+</classpath>

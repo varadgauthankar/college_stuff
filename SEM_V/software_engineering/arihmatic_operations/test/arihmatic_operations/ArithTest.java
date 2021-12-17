@@ -7,7 +7,7 @@ import org.junit.Test;
 public class ArithTest {
 
 	@Test
-	public void additionTest() {
+	public void additionTest() {s
 		int addition = Calculator.addition(10, 10);
 		assertEquals(addition,20);
 	}
