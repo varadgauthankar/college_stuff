@@ -9,7 +9,7 @@ void main()
     int i = 0;
     int j = 1;
 
-    printf("Enter your name: ");
+    printf("Enter your name (in BLOCK): ");
     scanf("%s", name);
 
     output[0] = 'A';
@@ -17,7 +17,6 @@ void main()
     // stuffing
     for (; name[i] != '\0'; i++, j++)
     {
-
         if (name[i] == 'A')
         {
             output[j] = name[i];
@@ -37,19 +36,15 @@ void main()
 
     // unstuffing
 
-    //name[0] = ' ';
-
-    for (i = 0; output[i] != '\0'; i++)
+    for (i = 1, j = 0; output[i] != '\0'; i++, j++)
     {
-        if (output[i] != 'A' && output[i + 1] != 'A')
-        {
-            name[i] = output[i];
-        }
-        i++;
+        name[j] = output[i];
+
+        if (output[i] == 'A' && output[i + 1] == 'A')
+            i++;
     }
 
-    //name[i-1] = ' ';
-    name[i] = '\0';
+    name[j] = '\0';
 
     printf("\n\nUN-STUFFING\n");
     printf("%s", name);
