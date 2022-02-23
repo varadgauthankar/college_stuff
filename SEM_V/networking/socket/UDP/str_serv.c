@@ -4,10 +4,12 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <string.h>
+#include <fcntl.h>  // for open
+#include <unistd.h> // for close
 
 int main()
 {
-    int serv_sockfd, cli_sockfd, client3_sockfd;
+    int serv_sockfd;
     int serv_len, cli_len;
     struct sockaddr_in serv_address;
     struct sockaddr_in cli_address;
@@ -26,7 +28,7 @@ int main()
     while (1)
     {
         char str[256];
-        int l = 0, h = 1, j;
+
         cli_len = sizeof(cli_address);
         printf("\n server is ready \n");
         int n = recvfrom(serv_sockfd, str, sizeof str, 0, (struct sockaddr *)&cli_address, (socklen_t *)&cli_len);
@@ -38,5 +40,4 @@ int main()
         n = strlen(str);
         sendto(serv_sockfd, str, n, 0, (struct sockaddr *)&cli_address, cli_len);
     }
-    close(client3_sockfd);
 }
