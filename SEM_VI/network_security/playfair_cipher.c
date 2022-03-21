@@ -1,173 +1,172 @@
 #include <stdio.h>
-#include <stdlib.h>
+//#include <conio.h>
 #include <string.h>
+#include <ctype.h>
+#define MX 5
+int choice = 1;
 
-#define SIZE 30
-
-void toLowerCase(char plain[], int ps)
+void playfair(char ch1, char ch2, char key[MX][MX])
 {
-    int i;
-    for (i = 0; i < ps; i++)
+    int i, j, w, x, y, z;
+    for (i = 0; i < MX; i++)
     {
-        if (plain[i] > 64 && plain[i] < 91)
-            plain[i] += 32;
-    }
-}
-
-int removeSpaces(char *plain, int ps)
-{
-    int i, count = 0;
-    for (i = 0; i < ps; i++)
-        if (plain[i] != ' ')
-            plain[count++] = plain[i];
-    plain[count] = '\0';
-    return count;
-}
-
-void generateKeyTable(char key[], int ks, char keyT[5][5])
-{
-    int i, j, k, flag = 0, *dicty;
-
-    dicty = (int *)calloc(26, sizeof(int));
-    for (i = 0; i < ks; i++)
-    {
-        if (key[i] != 'j')
-            dicty[key[i] - 97] = 2;
-    }
-
-    dicty['j' - 97] = 1;
-
-    i = 0;
-    j = 0;
-
-    for (k = 0; k < ks; k++)
-    {
-        if (dicty[key[k] - 97] == 2)
+        for (j = 0; j < MX; j++)
         {
-            dicty[key[k] - 97] -= 1;
-            keyT[i][j] = key[k];
-            j++;
-            if (j == 5)
+            if (ch1 == key[i][j])
             {
-                i++;
-                j = 0;
+                w = i;
+                x = j;
+            }
+            else if (ch2 == key[i][j])
+            {
+                y = i;
+                z = j;
             }
         }
     }
-
-    for (k = 0; k < 26; k++)
+    //printf("%d%d %d%d",w,x,y,z);
+    if (w == y)
     {
-        if (dicty[k] == 0)
+        if (choice == 1)
         {
-            keyT[i][j] = (char)(k + 97);
-            j++;
-            if (j == 5)
-            {
-                i++;
-                j = 0;
-            }
-        }
-    }
-}
-
-void search(char keyT[5][5], char a, char b, int arr[])
-{
-    int i, j;
-
-    if (a == 'j')
-        a = 'i';
-    else if (b == 'j')
-        b = 'i';
-
-    for (i = 0; i < 5; i++)
-    {
-
-        for (j = 0; j < 5; j++)
-        {
-
-            if (keyT[i][j] == a)
-            {
-                arr[0] = i;
-                arr[1] = j;
-            }
-            else if (keyT[i][j] == b)
-            {
-                arr[2] = i;
-                arr[3] = j;
-            }
-        }
-    }
-}
-
-int mod5(int a) { return (a % 5); }
-
-int prepare(char str[], int ptrs)
-{
-    if (ptrs % 2 != 0)
-    {
-        str[ptrs++] = 'z';
-        str[ptrs] = '\0';
-    }
-    return ptrs;
-}
-
-void encrypt(char str[], char keyT[5][5], int ps)
-{
-    int i, a[4];
-
-    for (i = 0; i < ps; i += 2)
-    {
-
-        search(keyT, str[i], str[i + 1], a);
-
-        if (a[0] == a[2])
-        {
-            str[i] = keyT[a[0]][mod5(a[1] + 1)];
-            str[i + 1] = keyT[a[0]][mod5(a[3] + 1)];
-        }
-        else if (a[1] == a[3])
-        {
-            str[i] = keyT[mod5(a[0] + 1)][a[1]];
-            str[i + 1] = keyT[mod5(a[2] + 1)][a[1]];
+            x = (x + 1) % 5;
+            z = (z + 1) % 5;
         }
         else
         {
-            str[i] = keyT[a[0]][a[3]];
-            str[i + 1] = keyT[a[2]][a[1]];
+            x = ((x - 1) % 5 + 5) % 5;
+            z = ((z - 1) % 5 + 5) % 5;
         }
+        printf("%c%c", key[w][x], key[y][z]);
+    }
+    else if (x == z)
+    {
+        if (choice == 1)
+        {
+            w = (w + 1) % 5;
+            y = (y + 1) % 5;
+        }
+        else
+        {
+            w = ((w - 1) % 5 + 5) % 5;
+            y = ((y - 1) % 5 + 5) % 5;
+        }
+        printf("%c%c", key[w][x], key[y][z]);
+    }
+    else
+    {
+        printf("%c%c", key[w][z], key[y][x]);
     }
 }
-
-void encryptByPlayfairCipher(char str[], char key[])
+void removeDuplicates(char str[])
 {
-    char ps, ks, keyT[5][5];
-
-    ks = strlen(key);
-    ks = removeSpaces(key, ks);
-    toLowerCase(key, ks);
-
-    ps = strlen(str);
-    toLowerCase(str, ps);
-    ps = removeSpaces(str, ps);
-
-    ps = prepare(str, ps);
-
-    generateKeyTable(key, ks, keyT);
-
-    encrypt(str, keyT, ps);
+    int hash[256] = {0};
+    int currentIndex = 0;
+    int lastUniqueIndex = 0;
+    while (*(str + currentIndex))
+    {
+        char temp = *(str + currentIndex);
+        if (0 == hash[temp])
+        {
+            hash[temp] = 1;
+            *(str + lastUniqueIndex) = temp;
+            lastUniqueIndex++;
+        }
+        currentIndex++;
+    }
+    *(str + lastUniqueIndex) = '\0';
 }
-
 void main()
 {
-    char str[SIZE], key[SIZE];
+    int i, j, k = 0, l, m = 0, n;
+    char key[MX][MX], keyminus[25], keystr[10], str[25] = {0};
 
-    strcpy(key, "abhi");
-    printf("Key text: %s\n", key);
+    char alpa[26] = {
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    printf("\nEncryption");
 
-    strcpy(str, "abid");
-    printf("Plain text: %s\n", str);
-
-    encryptByPlayfairCipher(str, key);
-
-    printf("Cipher text: %s\n", str);
+    printf("\nEnter key:");
+    scanf("%s", keystr);
+    printf("Enter the text:");
+    scanf("%s", str);
+    removeDuplicates(keystr);
+    n = strlen(keystr);
+    //convert the characters to uppertext
+    for (i = 0; i < n; i++)
+    {
+        if (keystr[i] == 'j')
+            keystr[i] = 'i';
+        else if (keystr[i] == 'J')
+            keystr[i] = 'I';
+        keystr[i] = toupper(keystr[i]);
+    }
+    //convert all the characters of plaintext to uppertext
+    for (i = 0; i < strlen(str); i++)
+    {
+        if (str[i] == 'j')
+            str[i] = 'i';
+        else if (str[i] == 'J')
+            str[i] = 'I';
+        str[i] = toupper(str[i]);
+    }
+    // store all characters except key
+    j = 0;
+    for (i = 0; i < 26; i++)
+    {
+        for (k = 0; k < n; k++)
+        {
+            if (keystr[k] == alpa[i])
+                break;
+            else if (alpa[i] == 'J')
+                break;
+        }
+        if (k == n)
+        {
+            keyminus[j] = alpa[i];
+            j++;
+        }
+    }
+    //construct key keymatrix
+    k = 0;
+    for (i = 0; i < MX; i++)
+    {
+        for (j = 0; j < MX; j++)
+        {
+            if (k < n)
+            {
+                key[i][j] = keystr[k];
+                k++;
+            }
+            else
+            {
+                key[i][j] = keyminus[m];
+                m++;
+            }
+            printf("%c ", key[i][j]);
+        }
+        printf("\n");
+    }
+    // construct diagram and convert to cipher text
+    printf("\nPlain text :%s\nCipher   Text :", str);
+    for (i = 0; i < strlen(str); i++)
+    {
+        if (str[i] == 'J')
+            str[i] = 'I';
+        if (str[i + 1] == '\0')
+            playfair(str[i], 'X', key);
+        else
+        {
+            if (str[i + 1] == 'J')
+                str[i + 1] = 'I';
+            if (str[i] == str[i + 1])
+                playfair(str[i], 'X', key);
+            else
+            {
+                playfair(str[i], str[i + 1], key);
+                i++;
+            }
+        }
+    }
+    if (choice == 2)
+        printf(" (Remove unnecessary X)");
 }
