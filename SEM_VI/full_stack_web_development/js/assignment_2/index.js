@@ -8,14 +8,20 @@ const employees = [
 
 function calculateAverageSalary(dept) {
   var filteredEmployees = employees.filter((e) => e.dept === dept);
-  console.log(`Employess of department ${dept}:`);
 
-  filteredEmployees.forEach((e) =>
-    console.log(`Name: ${e.nkname.toUpperCase()} \t salary: ${e.salary}`)
-  );
+  if (filteredEmployees.length != 0) {
+    console.log(`Employess of department ${dept}:`);
 
-  var averageSalary = filteredEmployees.reduce((a, b) => a.salary + b.salary);
-  console.log("\nAverage Salary:" + averageSalary);
+    filteredEmployees.forEach((e) =>
+      console.log(`Name: ${e.nkname.toUpperCase()} \t salary: ${e.salary}`)
+    );
+
+    var averageSalary = filteredEmployees.reduce((a, b) => a.salary + b.salary);
+
+    console.log("\nAverage Salary:" + averageSalary / filteredEmployees.length);
+  } else {
+    console.log("DEPARTMENT NOT AVAILABLE");
+  }
 }
 
 calculateAverageSalary("adv");
