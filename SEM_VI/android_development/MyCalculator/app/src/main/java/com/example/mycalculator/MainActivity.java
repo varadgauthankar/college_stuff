@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     EditText num1;
     EditText num2;
 
-    TextView Result;
+    TextView textViewResult;
 
     Button addBtn;
     Button subBtn; Button mulBtn;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         num1 = findViewById(R.id.number1);
         num2 = findViewById(R.id.number2);
-        Result = findViewById(R.id.resultTextView);
+        textViewResult = findViewById(R.id.resultTextView);
         addBtn = findViewById(R.id.addBtn);
         subBtn = findViewById(R.id.subBtn);
         mulBtn = findViewById(R.id.mulBtn);
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 number1 = Integer.parseInt(num1.getText().toString());
                 number2 = Integer.parseInt(num2.getText().toString());
                 result = number1 + number2;
-                Result.setText(Integer.toString(result));
+                textViewResult.setText(Integer.toString(result));
             }
         });
     }
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 number1 = Integer.parseInt(num1.getText().toString());
                 number2 = Integer.parseInt(num2.getText().toString());
                 result = number1 - number2;
-                Result.setText(Integer.toString(result));
+                textViewResult.setText(Integer.toString(result));
             }
         });
     }
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 number1 = Integer.parseInt(num1.getText().toString());
                 number2 = Integer.parseInt(num2.getText().toString());
                 result = number1 * number2;
-                Result.setText(Integer.toString(result));
+                textViewResult.setText(Integer.toString(result));
             }
         });
     }
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 number1 = Integer.parseInt(num1.getText().toString());
                 number2 = Integer.parseInt(num2.getText().toString());
                 result = number1 / number2;
-                Result.setText(Integer.toString(result));
+                textViewResult.setText(Integer.toString(result));
             }
         });
     }
