@@ -19,11 +19,15 @@ export class Fees extends React.Component {
           <th>Name</th>
           <th>Fees paid</th>
         </tr>
+
         {this.state.map((e) => (
           <tr>
             <td>{e.name}</td>
-            <td>
-              <input type="checkbox" checked={e.paid}></input>
+            <td style={{ display: "flex", alignItems: "center" }}>
+              <p style={{ color: !e.paid ? "red" : "" }}>
+                {e.paid ? "Paid" : "Not Paid"}
+              </p>
+              <input readOnly type="checkbox" checked={e.paid}></input>
             </td>
           </tr>
         ))}
