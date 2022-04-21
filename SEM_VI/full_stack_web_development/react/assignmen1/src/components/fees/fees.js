@@ -27,7 +27,7 @@ export class Fees extends React.Component {
               <p style={{ color: !e.paid ? "red" : "" }}>
                 {e.paid ? "Paid" : "Not Paid"}
               </p>
-              <input readOnly type="checkbox" checked={e.paid}></input>
+              <input readOnly type="checkbox" checked={e.paid} />
             </td>
           </tr>
         ))}
