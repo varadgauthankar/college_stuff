@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/edt1"
+        android:layout_width="376dp"
+        android:layout_height="61dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="18dp"
+        android:gravity="center"
+        android:hint="Enter" />
+
+    <Button
+        android:id="@+id/add1"
+        android:layout_width="109dp"
+        android:layout_height="63dp"
+        android:layout_below="@+id/edt1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="32dp"
+        android:textSize="25sp"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/sub"
+        android:layout_width="105dp"
+        android:layout_height="62dp"
+        android:layout_below="@+id/edt1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="55dp"
+        android:textSize="25sp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="33dp"
+        android:text="-" />
+
+    <Button
+        android:layout_width="109dp"
+        android:id="@+id/mul"
+        android:layout_height="63dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="243dp"
+        android:layout_marginEnd="55dp"
+        android:textSize="25sp"
+        android:layout_marginBottom="39dp"
+        android:text="*" />
+
+    <Button
+        android:layout_width="109dp"
+        android:layout_height="63dp"
+        android:id="@+id/div"
+        android:layout_below="@+id/edt1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="153dp"
+        android:layout_marginEnd="81dp"
+        android:textSize="25sp"
+        android:layout_marginBottom="39dp"
+        android:text="/" />
+
+    <Button
+        android:layout_width="261dp"
+        android:layout_height="65dp"
+        android:layout_below="@+id/edt1"
+        android:id="@+id/equal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="80dp"
+        android:textSize="25sp"
+        android:layout_marginTop="252dp"
+        android:layout_marginEnd="81dp"
+        android:text="=" />
+
+</RelativeLayout>
